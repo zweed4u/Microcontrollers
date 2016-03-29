@@ -10,9 +10,8 @@ void setup() {
   //Output on pin 9
   DDRB |= 00000010;
   
-  DDRB &= (0<<PORTB1);
-  PORTB |= (1<<PORTB1);
-  //pinMode(9,OUTPUT); 
+   //pinMode(9,OUTPUT); 
+  DDRB |= (1<<PORTB1);
 }
 
 void loop() {
