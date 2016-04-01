@@ -30,28 +30,23 @@ void setup()
   configureBoardPins();
   getActiveBeepPin();
   displayBeepPin(beepPin);
-  TCCR1A = 10000000;
-  TCCR1B = 00001000;   
-  ICR1 = 15999;
-  OCR1A = 8000;
-  DDRB |= 00010000;
-  pinMode(LED_PIN,OUTPUT);
+  TCCR1A=0b01000000;
+  TCCR1B=0b00001001;
+  OCR1A = 8000; 
+  //DDRB |= 00000010;
+  DDRC |= 00100000;
+  //pinMode(LED_PIN,OUTPUT);
+  //DDRB |= (1<<PORTB1);
+  DDRC |= (1<<PORTC5);
   beepPin = getActiveBeepPin();  // will affect beeper sound when in main loop
 }
 
 //***********************************************************************************
 void loop()
-{
-  
-  //red led in pin 13
-  digitalWrite(LED_PIN,HIGH);
-  delay(50);
-  digitalWrite(LED_PIN,LOW);
-  delay(50);
-  
+{  
   startMicroseconds = micros(); // to measure execution time
   //digitalWrite(QTR2_PIN, HIGH); // connect oscilloscope probe to this pin.
-  PORTC |= (1<<PORTC4);
+  //PORTC |= (1<<PORTC4);
   
   updateSwitchStates(); // function call to update state of switches (pressed/not pressed)
   countSwitchPresses(); // increment or decrement counter of switch presses
@@ -61,18 +56,21 @@ void loop()
  
   
   if (isSw1Pressed || isSw2Pressed) {
-    DDRB |= 0b00000010; 
-    OCR1A = 8000-numTimesPressed*50;
+    OCR1A = 8000-numTimesPressed*300;
+    DDRB |= 00000010;
+    //pinMode(LED_PIN,OUTPUT);
+    DDRB |= (1<<PORTB1);
   }
     //tone(beepPin, 880 + numTimesPressed * 20); //change tone
   else if (!isSw1Pressed){
       DDRB &= 0b11111101;
       PORTB &= 0b11111101;
+     
   }
   delay(10);   //remove delay to see switch bounce glitch
 
   //digitalWrite(QTR2_PIN, LOW);
-  PORTC &= ~(1<<PORTC4);
+  //PORTC &= ~(1<<PORTC4);
   
 //  elapsedMicroseconds = micros() - startMicroseconds; // to measure execution time
 //  Serial.print("loop execution time was ");
