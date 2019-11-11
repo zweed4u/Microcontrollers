@@ -36,6 +36,4 @@ void loop() {
     digitalWrite(CLOCK_PIN,HIGH);
     Serial.println("SW2 pressed");
   }
-  
 } // loop()
-

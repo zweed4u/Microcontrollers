@@ -23,7 +23,6 @@ long startMicroseconds=0, elapsedMicroseconds=0;
 void setup()
 {
   configureBoardPins();
- 
   Serial.begin(9600);
   Serial.println(F("Lab 4: Configuration Detection"));
 }
@@ -33,7 +32,7 @@ void loop()
 { 
   updateSwitchStates(); // function call to update state of switches (pressed/not pressed)
   countSwitchPresses(); // increment or decrement counter of switch presses
-//  countSwitchPressesUsingStateMachine(); // avoids any risk of switch bounce
+  //  countSwitchPressesUsingStateMachine(); // avoids any risk of switch bounce
   lightUpBarGraph(numTimesPressed); // light all LEDs from bottom up to numTimesPressed level
   
 
@@ -106,7 +105,6 @@ void configureBoardPins(void)
   pinMode(SW1_PIN, INPUT_PULLUP);  // SPST active low pushbutton
   pinMode(SW2_PIN, INPUT_PULLUP);
 
-
   pinMode(SPKR1_PIN, INPUT_PULLUP); // I/O pin speaker drive connection sense
   pinMode(SPKR2_PIN, INPUT_PULLUP);
 
@@ -123,7 +121,6 @@ void updateSwitchStates (void)
   isSw1Change = (isSw1Up2Dn || isSw1Dn2Up);             // switch just changed state
   
   // add code here to read switch 2
-
 }
 
 //*******************************************************************************************
@@ -158,8 +155,6 @@ void lightUpBarGraph(int barNum)
   // if the barNum>=10 turn on the D_FF_PIN LED or if not, turn off the LED
   
   //clearShiftRegisterToZero();
-
-
 }
 
 //***********************************************************************************

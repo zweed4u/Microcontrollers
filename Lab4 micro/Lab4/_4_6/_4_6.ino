@@ -18,13 +18,10 @@ int beepPin; // a variable since it is not known yet which pin has the speaker a
 int numTimesPressed=0;
 long startMicroseconds=0, elapsedMicroseconds=0;
 
-
-   
 //***********************************************************************************
 void setup()
 {
   configureBoardPins();
- 
   Serial.begin(9600);
   Serial.println(F("Lab 4: Configuration Detection"));
   beepPin = getActiveBeepPin();
@@ -35,12 +32,10 @@ void loop()
 { 
   startMicroseconds=micros(); // to measure execution time
   digitalWrite(QTR2_PIN,HIGH); // connect oscilloscope probe to this pin. 
-
-  
   
   updateSwitchStates(); // function call to update state of switches (pressed/not pressed)
   countSwitchPresses(); // increment or decrement counter of switch presses
-//  countSwitchPressesUsingStateMachine(); // avoids any risk of switch bounce
+  //  countSwitchPressesUsingStateMachine(); // avoids any risk of switch bounce
   lightUpBarGraph(numTimesPressed); // light all LEDs from bottom up to numTimesPressed level
   
   digitalWrite(QTR2_PIN,LOW);  
@@ -49,11 +44,8 @@ void loop()
   Serial.print(elapsedMicroseconds); 
   Serial.println(" microseconds."); 
 
-  
-  
-
-    //beepPin = SPKR1_PIN;
-    // will affect beeper sound when in main loop
+  //beepPin = SPKR1_PIN;
+  // will affect beeper sound when in main loop
 
   if (isSw1Pressed || isSw2Pressed) {
     tone(beepPin,880+numTimesPressed*20);  //change tone
@@ -76,8 +68,6 @@ void displayBeepPin(int beepPin)
 { // for spam reduction use static variable
   static int LastBeepPin; 
   // declare variable here
-  
-  
   // add anti-spam code here
 
   // Report speaker drive configuration (SPKR1, SPKR2, DISABLED) to console.
@@ -109,7 +99,6 @@ int getActiveBeepPin(void)
   pinMode(SPKR2_PIN, INPUT_PULLUP);
   //int beepPin = SPKR1_PIN;
  
-  
   if (digitalRead(SPKR1_PIN)==0){
     beepPin = SPKR1_PIN;
   }

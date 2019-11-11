@@ -161,4 +161,3 @@ void printTimer1Registers(void) {
     Serial.print(OCR1B, DEC);
     Serial.println();
 };
-

@@ -17,14 +17,11 @@ boolean isSw2Pressed, prevIsSw2Pressed = false, isSw2Up2Dn, isSw2Dn2Up, isSw2Cha
 int beepPin; // a variable since it is not known yet which pin has the speaker attached
 int numTimesPressed=0;
 long startMicroseconds=0, elapsedMicroseconds=0;
-
-
    
 //***********************************************************************************
 void setup()
 {
   configureBoardPins();
- 
   Serial.begin(9600);
   Serial.println(F("Lab 4: Configuration Detection"));
 }
@@ -34,9 +31,8 @@ void loop()
 { 
   updateSwitchStates(); // function call to update state of switches (pressed/not pressed)
   countSwitchPresses(); // increment or decrement counter of switch presses
-//  countSwitchPressesUsingStateMachine(); // avoids any risk of switch bounce
+  //  countSwitchPressesUsingStateMachine(); // avoids any risk of switch bounce
   lightUpBarGraph(numTimesPressed); // light all LEDs from bottom up to numTimesPressed level
-  
 
   //beepPin = SPKR1_PIN;
   beepPin = getActiveBeepPin();  // will affect beeper sound when in main loop
@@ -49,7 +45,6 @@ void loop()
   else if (isSw1Pressed==0){
     noTone(beepPin);
   }
-  
 
   // to stop the speaker tone, call the function noTone e.g. ---> noTone(beepPin);
  
@@ -63,7 +58,6 @@ void displayBeepPin(int beepPin)
   static int LastBeepPin; 
   // declare variable here
   
-  
   // add anti-spam code here
 
   // Report speaker drive configuration (SPKR1, SPKR2, DISABLED) to console.
@@ -75,7 +69,6 @@ void displayBeepPin(int beepPin)
     }
   }
   LastBeepPin = beepPin;
-  
 }
 
 //***********************************************************************************
@@ -94,7 +87,6 @@ int getActiveBeepPin(void)
   pinMode(SPKR1_PIN, INPUT_PULLUP); // I/O pin speaker drive connection sense
   pinMode(SPKR2_PIN, INPUT_PULLUP);
   //int beepPin = SPKR1_PIN;
- 
   
   if (digitalRead(SPKR1_PIN)==0){
     beepPin = SPKR1_PIN;
@@ -119,7 +111,6 @@ void configureBoardPins(void)
   
   pinMode(SW1_PIN, INPUT_PULLUP);  // SPST active low pushbutton
   pinMode(SW2_PIN, INPUT_PULLUP);
-
 
   pinMode(SPKR1_PIN, INPUT_PULLUP); // I/O pin speaker drive connection sense
   pinMode(SPKR2_PIN, INPUT_PULLUP);
@@ -208,7 +199,6 @@ void lightUpBarGraph(int barNum)
   // if the barNum>=10 turn on the D_FF_PIN LED or if not, turn off the LED
   
   //clearShiftRegisterToZero();
-
 
 }
 

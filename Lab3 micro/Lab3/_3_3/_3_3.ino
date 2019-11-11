@@ -31,9 +31,6 @@ void loop() {
   //Only top LED lit
   lightOneLED();
   
-
-  
-  
   // bar number counts up to 9 and then down to 0 creating a back and forth motion
   if (barNum == 9) { // if at the top, change direction -- count down
     increment = -1;
@@ -44,18 +41,9 @@ void loop() {
   barNum = barNum + increment;
   Serial.println(barNum); // for debug  
 
-  
   //sit here in delay
   delay(20000);
-  
-  
-  
 } // loop()
-
-
-
-
-
 
 void lightOneLED(){
   //Clearing register
@@ -71,8 +59,6 @@ void lightOneLED(){
   clockOne();
   digitalWrite(SERIAL_DATA_AB_PIN,LOW);//Simulates pressing sw1
 }
-
-
 
 void clockZero(){
   digitalWrite(CLOCK_PIN,HIGH);

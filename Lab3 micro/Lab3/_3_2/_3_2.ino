@@ -16,7 +16,6 @@ void setup() {
   Serial.println(F("Lab 3: single LED in motion"));
 } // setup()
 
-
 void loop() {
   //boolean values for history
   prevIsSwPressed = isSwPressed;
@@ -25,25 +24,23 @@ void loop() {
   //alternate boolean values for button history
   isSwPressed = !digitalRead(SW1_PIN);
   isSwPressed2 = !digitalRead(SW2_PIN);
-  
-  
-//Clearing register
-clockZero();
-clockZero();
-clockZero();
-clockZero();
-clockZero();
-clockZero();
-clockZero();
-clockZero();
 
-//Clocking 1 one in
-clockOne();
-digitalWrite(SERIAL_DATA_AB_PIN,LOW);//Simulates pressing sw1
+  //Clearing register
+  clockZero();
+  clockZero();
+  clockZero();
+  clockZero();
+  clockZero();
+  clockZero();
+  clockZero();
+  clockZero();
 
-//sit here in delay
-delay(20000);
-  
+  //Clocking 1 one in
+  clockOne();
+  digitalWrite(SERIAL_DATA_AB_PIN,LOW);//Simulates pressing sw1
+
+  //sit here in delay
+  delay(20000);  
 } // loop()
 
 void clockZero(){

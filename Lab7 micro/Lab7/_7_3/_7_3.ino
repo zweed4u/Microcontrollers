@@ -58,7 +58,6 @@ void loop()
 //     Serial.println("PCINT1 was triggered");
 //     PCINT1_was_triggered=false;
 //   };
-  
 
 } // Arduino loop()
 
@@ -82,7 +81,6 @@ void initInterrupts(void)  {
   EIFR  |= (1 << INTF0); // clear any pending interrupt flags by writing a 1 to register
   EIFR  |= (1 << INTF1);
   
-  
   PCICR |= 0x02;
   PCIFR |= 0x02;
   //Analog pins 0 and 1 (A1 and A0)
@@ -100,7 +98,6 @@ ISR(PCINT1_vect) // the ISR name must match the interrupt (e.g. INT0_vect)
   newPINC = PINC;
   changeMap = newPINC ^ prevPINC;
   PCINT1_was_triggered=true; //sets boolean that is checked in loop that will take care of serial monitor display
-
 
   if (changeMap & 0x01) 
   {

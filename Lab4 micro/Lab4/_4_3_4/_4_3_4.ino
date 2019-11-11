@@ -24,7 +24,6 @@ long startMicroseconds=0, elapsedMicroseconds=0;
 void setup()
 {
   configureBoardPins();
- 
   Serial.begin(9600);
   Serial.println(F("Lab 4: Configuration Detection"));
 }
@@ -34,10 +33,8 @@ void loop()
 { 
   updateSwitchStates(); // function call to update state of switches (pressed/not pressed)
   countSwitchPresses(); // increment or decrement counter of switch presses
-//  countSwitchPressesUsingStateMachine(); // avoids any risk of switch bounce
+  //  countSwitchPressesUsingStateMachine(); // avoids any risk of switch bounce
   lightUpBarGraph(numTimesPressed); // light all LEDs from bottom up to numTimesPressed level
-  
-
   //beepPin = SPKR1_PIN;
   beepPin = getActiveBeepPin();  // will affect beeper sound when in main loop
 
@@ -50,9 +47,7 @@ void loop()
     noTone(beepPin);
   }
   
-
   // to stop the speaker tone, call the function noTone e.g. ---> noTone(beepPin);
- 
   delay(10);   //remove delay to see switch bounce glitch
     
 } // Arduino loop()
@@ -62,7 +57,6 @@ void displayBeepPin(int beepPin)
 { // for spam reduction use static variable
   static int LastBeepPin; 
   // declare variable here
-  
   
   // add anti-spam code here
 
@@ -94,8 +88,7 @@ int getActiveBeepPin(void)
   pinMode(SPKR1_PIN, INPUT_PULLUP); // I/O pin speaker drive connection sense
   pinMode(SPKR2_PIN, INPUT_PULLUP);
   //int beepPin = SPKR1_PIN;
- 
-  
+
   if (digitalRead(SPKR1_PIN)==0){
     beepPin = SPKR1_PIN;
   }
@@ -119,7 +112,6 @@ void configureBoardPins(void)
   
   pinMode(SW1_PIN, INPUT_PULLUP);  // SPST active low pushbutton
   pinMode(SW2_PIN, INPUT_PULLUP);
-
 
   pinMode(SPKR1_PIN, INPUT_PULLUP); // I/O pin speaker drive connection sense
   pinMode(SPKR2_PIN, INPUT_PULLUP);
@@ -155,7 +147,6 @@ void countSwitchPresses(void)
 //    Serial.print("Switch 1 has been pressed ");
 //    Serial.print(numTimesPressed);
 //    Serial.println(" times.");
-  
 };
 
 //***********************************************************************************
@@ -163,7 +154,6 @@ void pulseClk(void)
 {
   // Pulse clock line: LOW, HIGH to get guaranteed rising edge
   // and leave function with LED on i.e. clock high.
-
 }
 
 //***********************************************************************************
@@ -176,8 +166,6 @@ void lightUpBarGraph(int barNum)
   // if the barNum>=10 turn on the D_FF_PIN LED or if not, turn off the LED
   
   //clearShiftRegisterToZero();
-
-
 }
 
 //***********************************************************************************
@@ -185,7 +173,6 @@ void clearShiftRegisterToZero(void)
 { // clear out the shift register by clocking out 8 zeroes.
   // leave the D_FF and CLK_FF pins LOW when done.
   // call the pulseClk() function to perform clocking.
-  
 }
 
 //***********************************************************************************
@@ -193,7 +180,6 @@ void countSwitchPressesUsingStateMachine (void)
 {
   // Interpret changes in SW1 and SW2 presses
   // This function is complete as is. No modifications required.
-  
   if ((isSw1Pressed && !prevIsSw1Pressed) &&  prevIsSw2Pressed ) numTimesPressed--; // falling SW1,  hi SW2 -> CW
   if ((!isSw1Pressed && prevIsSw1Pressed) && !isSw2Pressed ) numTimesPressed--; // rising SW1, low SW2 -> CW
   if ((isSw2Pressed && !prevIsSw2Pressed) && !isSw1Pressed ) numTimesPressed--; // falling SW2, low SW1 -> CW

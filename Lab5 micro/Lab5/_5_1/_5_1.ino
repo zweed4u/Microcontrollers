@@ -51,9 +51,7 @@ void loop()
   updateSwitchStates(); // function call to update state of switches (pressed/not pressed)
   countSwitchPresses(); // increment or decrement counter of switch presses
   //  countSwitchPressesUsingStateMachine(); // avoids any risk of switch bounce
-  lightUpBarGraph(numTimesPressed); // light all LEDs from bottom up to numTimesPressed level
-  
- 
+  lightUpBarGraph(numTimesPressed); // light all LEDs from bottom up to numTimesPressed level 
   
   if (isSw1Pressed || isSw2Pressed) {
     OCR1A = 8000-numTimesPressed*300;
@@ -63,9 +61,8 @@ void loop()
   }
     //tone(beepPin, 880 + numTimesPressed * 20); //change tone
   else if (!isSw1Pressed){
-      DDRB &= 0b11111101;
-      PORTB &= 0b11111101;
-     
+    DDRB &= 0b11111101;
+    PORTB &= 0b11111101; 
   }
   delay(10);   //remove delay to see switch bounce glitch
 

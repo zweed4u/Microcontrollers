@@ -17,7 +17,6 @@ void setup() {
   Serial.println(F("Lab 3: single LED in motion"));
 } // setup()
 
-
 void loop() {
   //boolean values for history
   prevIsSwPressed = isSwPressed;
@@ -30,10 +29,7 @@ void loop() {
   //Gets us to a known start state
   //Only top LED lit
   lightOneLED();
-  
 
-  
-  
   // bar number counts up to 9 and then down to 0 creating a back and forth motion
   if (barNum == 9) { // if at the top, change direction -- count down
     increment = -1;
@@ -48,17 +44,9 @@ void loop() {
     clockZero();
   }
   
- delay(1000);
-  
-  //sit here in delay  
-  
-  
+  delay(1000);
+  //sit here in delay    
 } // loop()
-
-
-
-
-
 
 void lightOneLED(){
   //Clearing register
@@ -74,8 +62,6 @@ void lightOneLED(){
   clockOne();
   digitalWrite(SERIAL_DATA_AB_PIN,LOW);//Simulates pressing sw1
 }
-
-
 
 void clockZero(){
   digitalWrite(SERIAL_DATA_AB_PIN,LOW);

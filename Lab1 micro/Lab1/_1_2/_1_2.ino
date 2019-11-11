@@ -12,11 +12,11 @@ void setup() {
   delay(5000);
 }
 void loop() {
-if (Serial.available()) {
-inChar = Serial.read();
-Serial.print("Serial input detected: ");
-Serial.println(inChar);
-}
-if (inChar == 'n') digitalWrite(LED, HIGH); // oN
-if (inChar == 'f') digitalWrite(LED, LOW); // oFf
+  if (Serial.available()) {
+    inChar = Serial.read();
+    Serial.print("Serial input detected: ");
+    Serial.println(inChar);
+  }
+  if (inChar == 'n') digitalWrite(LED, HIGH); // oN
+  if (inChar == 'f') digitalWrite(LED, LOW); // oFf
 } // loop()

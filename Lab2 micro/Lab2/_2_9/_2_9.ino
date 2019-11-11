@@ -10,14 +10,12 @@ void setup() {
 }
 
 void loop() {
-
-// Set pin high then low using slow library function
-
+  // Set pin high then low using slow library function
   digitalWrite(LED2_PIN,LOW);
   digitalWrite(LED2_PIN,HIGH);
   digitalWrite(LED2_PIN,LOW);
 
-// Set pin high then low using fast direct setting of using bit manipulation
+  // Set pin high then low using fast direct setting of using bit manipulation
 
   // Three ways to do the same thing 
   
@@ -25,13 +23,11 @@ void loop() {
   PORTB = PORTB | 0b00000001; // set pin HIGH
   PORTB = PORTB & 0b11111110; // set pin LOW
     
-//  // Hex
+  //  // Hex
   PORTB |= 0x01; // set pin HIGH
   PORTB &= 0xFE; // set pin LOW
   
-//  // bit shifting
+  //  // bit shifting
   PORTB |= (1 << 0); // set pin HIGH
   PORTB &= ~(1 << 0); // set pin LOW
 }
-
-
